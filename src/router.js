@@ -37,5 +37,30 @@ export default new Router({
       name: "job-details",
       component: () => import("./components/JobDetails.vue"),
     },
+    {
+      path: "/postjob",
+      name: "postjob",
+      component: () => import("./components/PostJob.vue"),
+    },
+    {
+      path: "/addresume",
+      name: "addresume",
+      component: () => import("./components/AddResume.vue"),
+    },
+    {
+      path: "/privacy-policy",
+      name: "privacy-policy",
+      component: () => import("./components/PrivacyPolicy.vue"),
+    },
+    {
+      path: "/faq",
+      name: "faq",
+      component: () => import("./components/Faq.vue"),
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: () => import("./components/Contact.vue"),
+    },
   ],
 });

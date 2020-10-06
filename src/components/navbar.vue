@@ -68,18 +68,27 @@
                     <a class="dropdown-item" href="resume.html">Resume Page</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="privacy-policy.html"
+                    <!-- <a class="dropdown-item" to="/privacy-policy"
                       >Privacy Policy</a
+                    > -->
+                    <router-link to="/privacy-policy" class="dropdown-item"
+                      >Privacy Policy</router-link
                     >
                   </li>
-                  <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+                  <li>
+                    <router-link to="/faq" class="dropdown-item"
+                      >FAQ</router-link
+                    >
+                  </li>
                   <li>
                     <a class="dropdown-item" href="pricing.html"
                       >Pricing Tables</a
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="contact.html">Contact</a>
+                    <router-link to="/contact" class="dropdown-item"
+                      >Contact</router-link
+                    >
                   </li>
                 </ul>
               </li>
@@ -186,16 +195,16 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">
-                  Contact
-                </a>
+                <router-link to="/contact" class="nav-link"
+                  >Contact</router-link
+                >
               </li>
               <li class="nav-item">
                 <router-link to="/login" class="nav-link">Sign In</router-link>
               </li>
               <li class="button-group">
-                <a href="post-job.html" class="button btn btn-common"
-                  >Post a Job</a
+                <router-link to="/postjob" class="button btn btn-common"
+                  >Post a Job</router-link
                 >
               </li>
             </ul>
