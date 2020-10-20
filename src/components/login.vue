@@ -23,7 +23,7 @@
               <h3>
                 Login
               </h3>
-              <form class="login-form">
+              <div class="login-form">
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-user"></i>
@@ -32,6 +32,7 @@
                       id="sender-email"
                       class="form-control"
                       name="email"
+                      v-model="payload.email"
                       placeholder="Username"
                     />
                   </div>
@@ -42,6 +43,7 @@
                     <input
                       type="password"
                       class="form-control"
+                      v-model="payload.password"
                       placeholder="Password"
                     />
                   </div>
@@ -56,8 +58,10 @@
                     >Keep Me Signed In</label
                   >
                 </div>
-                <button class="btn btn-common log-btn">Submit</button>
-              </form>
+                <button class="btn btn-common log-btn" v-on:click="login()">
+                  Submit
+                </button>
+              </div>
               <ul class="form-links">
                 <li class="text-center">
                   <router-link to="/signup">Don't have an account?</router-link>
@@ -72,7 +76,25 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      payload: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  computed: {
+    ...mapState({}),
+  },
+  methods: {
+    login() {
+      this.$store.dispatch("auth/login", this.payload);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>
