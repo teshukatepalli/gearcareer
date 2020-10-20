@@ -28,6 +28,44 @@ export default new Router({
       component: () => import("./components/About.vue"),
     },
     {
+      path: "/",
+      name: "profile",
+      component: () => import("./components/profile/profile.vue"),
+      children: [
+        {
+          path: "/myresume",
+          name: "myresume",
+          component: () => import("./components/profile/MyResume.vue"),
+        },
+        {
+          path: "/bookmarked",
+          name: "bookmarked",
+          component: () => import("./components/profile/BookmarkedJobs.vue"),
+        },
+        {
+          path: "/notifications",
+          name: "notifications",
+          component: () => import("./components/profile/Notifications.vue"),
+        },
+        {
+          path: "/manage-applications",
+          name: "manage-applications",
+          component: () =>
+            import("./components/profile/ManageApplications.vue"),
+        },
+        {
+          path: "/job-alerts",
+          name: "job-alerts",
+          component: () => import("./components/profile/JobAlerts.vue"),
+        },
+        {
+          path: "/change-password",
+          name: "change-password",
+          component: () => import("./components/profile/ChangePassword.vue"),
+        },
+      ],
+    },
+    {
       path: "/jobs",
       name: "jobs",
       component: () => import("./components/JobPage.vue"),

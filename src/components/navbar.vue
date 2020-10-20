@@ -199,8 +199,31 @@
                   >Contact</router-link
                 >
               </li>
-              <li class="nav-item">
-                <router-link to="/login" class="nav-link">Sign In</router-link>
+              <li v-if="Authenticate" class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {{ Profile.username }}
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <router-link to="/myresume" class="dropdown-item">
+                      <span>Profile</span>
+                    </router-link>
+                  </li>
+                  <li>
+                    <a @click="logout()" class="dropdown-item">Log out</a>
+                  </li>
+                </ul>
+              </li>
+              <li v-else class="nav-item">
+                <router-link to="/login" class="nav-link">
+                  <span>Sign In</span>
+                </router-link>
               </li>
               <li class="button-group">
                 <router-link to="/postjob" class="button btn btn-common"
@@ -218,7 +241,28 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState({
+      Profile: (state) => state.auth.profile,
+      Authenticate: (state) => state.auth.iSAuthenticated,
+    }),
+  },
+  created() {
+    this.$store.dispatch("auth/user");
+  },
+  methods: {
+    async logout() {
+      console.log("Logout called");
+      this.$store.dispatch("auth/logout");
+    },
+  },
+};
 </script>
 
 <style scoped>

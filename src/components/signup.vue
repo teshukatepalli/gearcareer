@@ -22,7 +22,7 @@
               <h3>
                 Create Your account
               </h3>
-              <form class="login-form">
+              <div class="login-form">
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-user"></i>
@@ -30,6 +30,7 @@
                       type="text"
                       class="form-control"
                       name="name"
+                      v-model="signup.username"
                       placeholder="Username"
                     />
                   </div>
@@ -41,6 +42,7 @@
                       type="text"
                       class="form-control"
                       name="email"
+                      v-model="signup.email"
                       placeholder="Email Address"
                     />
                   </div>
@@ -50,6 +52,7 @@
                     <i class="lni-lock"></i>
                     <input
                       type="password"
+                      v-model="signup.password"
                       class="form-control"
                       placeholder="Password"
                     />
@@ -61,16 +64,22 @@
                     <input
                       type="password"
                       class="form-control"
+                      v-model="verifyPassword"
                       placeholder="Retype Password"
                     />
                   </div>
                 </div>
-                <button class="btn btn-common log-btn mt-3">Register</button>
+                <button
+                  class="btn btn-common log-btn mt-3"
+                  v-on:click="register()"
+                >
+                  Register
+                </button>
                 <p class="text-center">
                   Already have an account?
                   <router-link to="/login">Sign In</router-link>
                 </p>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -81,7 +90,27 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      signup: {
+        username: "",
+        email: "",
+        password: "",
+      },
+      verifyPassword: "",
+    };
+  },
+  computed: {
+    ...mapState({}),
+  },
+  methods: {
+    register() {
+      this.$store.dispatch("auth/signup", this.signup);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>
