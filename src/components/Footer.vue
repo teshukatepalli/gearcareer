@@ -104,7 +104,9 @@
               <div class="site-info text-center">
                 <p>
                   Designed and Developed by
-                  <a href="https://uideck.com" rel="nofollow">UIdeck</a>
+                  <a href="https://codejunkers.in" rel="nofollow"
+                    >codejunkers</a
+                  >
                 </p>
               </div>
             </div>
@@ -118,40 +120,7 @@
 </template>
 
 <script>
-export default {
-<<<<<<< HEAD
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+export default {};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
-=======
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
-};
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
->>>>>>> 2d79ed3382fe20da4d536c207f8417b23ba5982e
+<style lang="scss" scoped></style>
