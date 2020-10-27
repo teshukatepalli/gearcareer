@@ -65,7 +65,9 @@
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="resume.html">Resume Page</a>
+                    <router-link to="/myresume" class="dropdown-item"
+                      >Resume Page</router-link
+                    >
                   </li>
                   <li>
                     <!-- <a class="dropdown-item" to="/privacy-policy"
@@ -114,8 +116,8 @@
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="add-resume.html"
-                      >Add Resume</a
+                    <router-link to="/addresume" class="dropdown-item"
+                      >Add Resume</router-link
                     >
                   </li>
                   <li>
@@ -207,7 +209,7 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {{ Profile.username }}
+                  {{ username }}
                 </a>
                 <ul class="dropdown-menu">
                   <li>
@@ -252,6 +254,9 @@ export default {
       Profile: (state) => state.auth.profile,
       Authenticate: (state) => state.auth.iSAuthenticated,
     }),
+    username: function() {
+      return this.Profile.user.username;
+    },
   },
   created() {
     this.$store.dispatch("auth/user");

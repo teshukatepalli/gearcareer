@@ -20,12 +20,12 @@
         <div class="row justify-content-center">
           <div class="col-lg-9 col-md-12 col-xs-12">
             <div class="add-resume box">
-              <div class="post-header">
+              <!-- <div class="post-header">
                 <p>
                   Already have an account?
                   <a href="register.html">Click here to login</a>
                 </p>
-              </div>
+              </div> -->
               <form class="form-ad">
                 <h3>Basic information</h3>
                 <div class="form-group">
@@ -50,15 +50,64 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Location</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Location, e.g"
-                  />
+                  <h3>Address</h3>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label class="control-label">Door No</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Door no"
+                      />
+                    </div>
+                    <div class="from-group col-md-6">
+                      <label class="control-label">Street</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Street"
+                      />
+                    </div>
+                    <div class="from-group col-md-6">
+                      <label class="control-label">City</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="City"
+                      />
+                    </div>
+                    <div class="from-group col-md-6">
+                      <label class="control-label">State / Province</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="State / Province"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Web</label>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label class="control-label">Postal / Zip Code</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Postal /Zip Code"
+                      />
+                    </div>
+                    <div class="from-group col-md-6">
+                      <label class="control-label">Country</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Country"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Web (optional)</label>
                   <input
                     type="text"
                     class="form-control"
@@ -66,19 +115,19 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Pre Hour</label>
+                  <label class="control-label">Salary</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Salary, e.g. 85"
+                    placeholder="Salary"
                   />
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Age</label>
+                  <label class="control-label">Experience</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Years old"
+                    placeholder="Experience"
                   />
                 </div>
                 <div class="form-group">

@@ -83,7 +83,7 @@ export default new Router({
     {
       path: "/addresume",
       name: "addresume",
-      component: () => import("./components/AddResume.vue"),
+      component: () => import("./components/profile/AddResume.vue"),
     },
     {
       path: "/privacy-policy",
