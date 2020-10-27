@@ -44,7 +44,7 @@ const actions = {
   async user(context) {
     if (authHeader()) {
       let { data } = await API.Authentication.user();
-      context.commit("updateProfileInfo", data);
+      await context.commit("updateProfileInfo", data);
     }
     // router.push("/");
   },
