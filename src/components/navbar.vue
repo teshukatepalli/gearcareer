@@ -201,15 +201,15 @@
                   >Contact</router-link
                 >
               </li>
-              <li v-if="Authenticate" class="nav-item dropdown">
+              <li v-if="Profile.name" class="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  class="nav-link dropdown-toggle "
                   href="#"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {{ username }}
+                  {{Profile.name}}
                 </a>
                 <ul class="dropdown-menu">
                   <li>
@@ -254,9 +254,6 @@ export default {
       Profile: (state) => state.auth.profile,
       Authenticate: (state) => state.auth.iSAuthenticated,
     }),
-    username: function() {
-      return this.Profile.user.username;
-    },
   },
   created() {
     this.$store.dispatch("auth/user");

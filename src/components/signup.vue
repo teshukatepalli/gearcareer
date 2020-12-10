@@ -30,8 +30,8 @@
                       type="text"
                       class="form-control"
                       name="name"
-                      v-model="signup.username"
-                      placeholder="Username"
+                      v-model="signup.name"
+                      placeholder="name"
                     />
                   </div>
                 </div>
@@ -64,7 +64,7 @@
                     <input
                       type="password"
                       class="form-control"
-                      v-model="verifyPassword"
+                      v-model="signup.passwordConfirm"
                       placeholder="Retype Password"
                     />
                   </div>
@@ -95,11 +95,11 @@ export default {
   data() {
     return {
       signup: {
-        username: "",
+        name: "",
         email: "",
         password: "",
+        passwordConfirm:""
       },
-      verifyPassword: "",
     };
   },
   computed: {

@@ -33,7 +33,7 @@
                       class="form-control"
                       name="email"
                       v-model="payload.email"
-                      placeholder="Username"
+                      placeholder="name"
                     />
                   </div>
                 </div>
@@ -81,8 +81,8 @@ export default {
   data() {
     return {
       payload: {
-        email: "",
-        password: "",
+        email: "teshukatepalli996@gmail.com",
+        password: "teshu143cherry",
       },
     };
   },

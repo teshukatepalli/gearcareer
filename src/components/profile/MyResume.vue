@@ -5,12 +5,14 @@
         <img src="assets/img/resume/img-1.png" alt="" />
       </div>
       <div class="author-info">
-        <h3>Mark Anderson</h3>
+        <a @click="editProfile" class="btn-added float-right"
+          ><i class="ti-plus"></i>edit
+        </a>
+        <h3>{{Profile.name}}</h3>
         <p class="sub-title">UI/UX Designer</p>
         <p>
-          <span class="address"
-            ><i class="lni-map-marker"></i>Mahattan, NYC, USA</span
-          >
+          <span class="address" v-if="checkAddress(Profile.address)"
+            ><i class="lni-map-marker"></i>{{checkAddress(Profile.address)}}</span>
           <span><i class="ti-phone"></i>(+01) 211-123-5678</span>
         </p>
         <div class="social-link">
@@ -72,7 +74,27 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+      Profile: (state) => state.auth.profile,
+      Authenticate: (state) => state.auth.iSAuthenticated,
+    }),
+  },
+  methods:{
+    editProfile() {
+      console.log("Edit called");
+    },
+    checkAddress(address) {
+      return address.address ? address.address : null
+    }
+  }
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+a {
+  color: #26ae61;
+}
+</style>

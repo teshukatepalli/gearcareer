@@ -1,10 +1,5 @@
-import { API } from "@/api";
+import API from "../../api/services";
 import router from "../../router";
-import {
-  storeAuthData,
-  removeAuthData,
-  authHeader,
-} from "../../services/Auther";
 
 const state = {
   profile: {},
@@ -24,29 +19,24 @@ const mutations = {
 
 const actions = {
   async signup(context, payload) {
-    let { data } = await API.Authentication.signup(payload);
-    context.commit("updateProfileInfo", data.user);
-    await storeAuthData(data.token);
+    let { data } = await API.create("/users/signup", payload);
+    context.commit("updateProfileInfo", data.data.user);
     router.push("/");
   },
   async login(context, payload) {
-    let { data } = await API.Authentication.login(payload);
-    await storeAuthData(data.token);
-    context.commit("updateProfileInfo", data.user);
+    let { data } = await API.create("/users/login", payload);
+    context.commit("updateProfileInfo", data.data.user);
     router.push("/");
   },
   async logout(context) {
-    await removeAuthData();
     context.commit("removeProfileInfo", "{}");
     router.currentRoute.path !== "/" ? router.push("/") : "";
   },
 
   async user(context) {
-    if (authHeader()) {
-      let { data } = await API.Authentication.user();
-      await context.commit("updateProfileInfo", data);
-    }
-    // router.push("/");
+    let data = {};
+    // let { data } = await API.Authentication.user();
+    await context.commit("updateProfileInfo", data);
   },
 };
 

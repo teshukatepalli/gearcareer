@@ -6,7 +6,10 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="inner-header">
-              <h3>Resume</h3>
+              <h3 v-if="Profile.name">{{Profile.name}}</h3>
+              <h3 v-else>Name</h3>
+              <p v-if="Profile.email">{{Profile.email}}</p>
+               <p v-else>email</p>
             </div>
           </div>
         </div>
@@ -78,9 +81,16 @@
     <!-- End Content -->
   </div>
 </template>
-
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+      Profile: (state) => state.auth.profile,
+      Authenticate: (state) => state.auth.iSAuthenticated,
+    }),
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

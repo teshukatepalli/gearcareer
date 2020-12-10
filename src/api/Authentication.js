@@ -1,18 +1,11 @@
-import APIFetch from "@/services/Auth.js";
+// import APIFetch from "@/services/Auth.js";
+import APIs from "./services";
 import axios from "axios";
 
 export class Authentication {
   //signup
   static signup(data = {}) {
-    return axios({
-      method: "post",
-      url: `http://localhost:3000/user/signup/`,
-      data: data,
-      headers: {
-        Accept: "*/*",
-        "Content-Type": "application/json",
-      },
-    });
+    return APIs.post("/users/", data);
   }
 
   //Login
