@@ -20,12 +20,12 @@
         <div class="row justify-content-center">
           <div class="col-lg-9 col-md-12 col-xs-12">
             <div class="add-resume box">
-              <!-- <div class="post-header">
+              <div class="post-header">
                 <p>
                   Already have an account?
                   <a href="register.html">Click here to login</a>
                 </p>
-              </div> -->
+              </div>
               <form class="form-ad">
                 <h3>Basic information</h3>
                 <div class="form-group">

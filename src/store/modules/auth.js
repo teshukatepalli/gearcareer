@@ -1,5 +1,6 @@
 import API from "../../api/services";
 import router from "../../router";
+import { storeAuthData } from "../../services/Auther";
 
 const state = {
   profile: {},
@@ -20,13 +21,22 @@ const mutations = {
 const actions = {
   async signup(context, payload) {
     let { data } = await API.create("/users/signup", payload);
+    console.log(data);
+    storeAuthData(data.token);
     context.commit("updateProfileInfo", data.data.user);
+
     router.push("/");
   },
   async login(context, payload) {
     let { data } = await API.create("/users/login", payload);
+    console.log(data);
+    storeAuthData(data.token);
     context.commit("updateProfileInfo", data.data.user);
     router.push("/");
+  },
+  async update(context, payload) {
+    let { data } = await API.update("/users/updateMe", payload);
+    context.commit("updateProfileInfo", data.data.user);
   },
   async logout(context) {
     context.commit("removeProfileInfo", "{}");

@@ -209,7 +209,7 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {{Profile.name}}
+                  {{ Profile.name }}
                 </a>
                 <ul class="dropdown-menu">
                   <li>
@@ -271,6 +271,9 @@ export default {
 .navbar {
   background-color: #fff;
   box-shadow: 0px 0px 3px #ccc;
+}
+.fixed-top {
+  z-index: 10;
 }
 .navbar img {
   width: 60px;

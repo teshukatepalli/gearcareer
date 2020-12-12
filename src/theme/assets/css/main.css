@@ -103,6 +103,10 @@ a:not([href]):not([tabindex]):hover {
   color: #26ae61 !important;
 }
 
+.btn-color-white {
+  color: #fff!important;
+}
+
 .bg-gray {
   background: #f9fcff;
 }

@@ -2,18 +2,22 @@
   <div class="inner-box my-resume">
     <div class="author-resume">
       <div class="thumb">
-        <img src="assets/img/resume/img-1.png" alt="" />
+        <!-- <img src="assets/img/resume/img-1.png" alt="" /> -->
+        <img src="@/assets/gearcareer.png" alt="Profile picture" />
       </div>
       <div class="author-info">
         <a @click="editProfile" class="btn-added float-right"
           ><i class="ti-plus"></i>edit
         </a>
-        <h3>{{Profile.name}}</h3>
-        <p class="sub-title">UI/UX Designer</p>
+        <!-- <h3>{{ Profile }}</h3> -->
+        <h3>{{ Profile.name }}</h3>
+        <p class="sub-title">{{ Profile.profession }}</p>
         <p>
           <span class="address" v-if="checkAddress(Profile.address)"
-            ><i class="lni-map-marker"></i>{{checkAddress(Profile.address)}}</span>
-          <span><i class="ti-phone"></i>(+01) 211-123-5678</span>
+            ><i class="lni-map-marker"></i
+            >{{ checkAddress(Profile.address) }}</span
+          >
+          <span><i class="ti-phone"></i>{{ Profile.mobile }}</span>
         </p>
         <div class="social-link">
           <a href="#" class="Twitter"><i class="lni-twitter-filled"></i></a>
@@ -22,21 +26,21 @@
           <a href="#" class="linkedin"><i class="lni-linkedin-fill"></i></a>
         </div>
       </div>
+      <editprofile :show="profileModel" @closeModel="editProfile" />
     </div>
     <div class="about-me item">
+      <a @click="editProfile" class="btn-added float-right"
+        ><i class="ti-plus"></i>edit
+      </a>
       <h3>About Me</h3>
       <p>
-        Nullam semper erat arcu, ac tincidunt sem venenatis vel. Curabitur a
-        dolor ac ligula fermentum eusmod ac ullamcorper nulla. Integer blandit
-        uitricies aliquam. Pellentesque quis dui varius, dapibus vilit id,
-        ipsum. Morbi ac eros feugiat, lacinia elit ut, elementum turpis.
-        Curabitur justo sapien, tempus sit amet ruturm eu, commodo eu lacus.
-        Morbi in ligula nibh. Maecenas ut mi at odio hendririt eleif end tempor
-        vitae augue. Fusce eget arcu et nibh dapibus maximus consectetur in est.
-        Sed iaculis Luctus nibh sed veneatis.
+        {{ Profile.about }}
       </p>
     </div>
     <div class="work-experence item">
+      <a @click="editWorkExperience" class="btn-added float-right"
+        ><i class="ti-plus"></i>edit
+      </a>
       <h3>Work Experience</h3>
       <h4>UI/UX Designer</h4>
       <h5>Bannana INC.</h5>
@@ -60,6 +64,7 @@
       </p>
       <p><a href="#">4 Projects</a></p>
     </div>
+    <WorkExperience :show="workExperience" @closeModel="editWorkExperience" />
     <div class="education item">
       <h3>Education</h3>
       <h4>Massachusetts Institute Of Technology</h4>
@@ -75,21 +80,39 @@
 
 <script>
 import { mapState } from "vuex";
+import editprofile from "./editProfile.vue";
+import WorkExperience from "./WorkExperience.vue";
 export default {
+  name: "profile",
+  components: {
+    editprofile,
+    WorkExperience,
+  },
+  data() {
+    return {
+      profileModel: false,
+      workExperience: false,
+    };
+  },
   computed: {
     ...mapState({
       Profile: (state) => state.auth.profile,
       Authenticate: (state) => state.auth.iSAuthenticated,
     }),
   },
-  methods:{
+  methods: {
     editProfile() {
       console.log("Edit called");
+      this.profileModel = !this.profileModel;
     },
     checkAddress(address) {
-      return address.address ? address.address : null
-    }
-  }
+      return address.address ? address.address : null;
+    },
+    editWorkExperience() {
+      console.log("Work Experience called");
+      this.workExperience = !this.workExperience;
+    },
+  },
 };
 </script>
 
