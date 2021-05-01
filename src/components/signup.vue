@@ -22,6 +22,14 @@
               <h3>
                 Create Your account
               </h3>
+              <div class="flex-space-even text-center pb-4">
+                <a :class="{ active: !employer }" @click="isEmployer(false)"
+                  >Employe</a
+                >
+                <a :class="{ active: employer }" @click="isEmployer(true)"
+                  >Employer</a
+                >
+              </div>
               <div class="login-form">
                 <div class="form-group">
                   <div class="input-icon">
@@ -98,8 +106,9 @@ export default {
         name: "",
         email: "",
         password: "",
-        passwordConfirm:""
+        passwordConfirm: "",
       },
+      employer: false,
     };
   },
   computed: {
@@ -109,8 +118,23 @@ export default {
     register() {
       this.$store.dispatch("auth/signup", this.signup);
     },
+    isEmployer(value) {
+      value
+        ? ((this.signup.role = "employer"), (this.employer = true))
+        : (this.employer = false);
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.active {
+  border-bottom: 2px solid #26ae61;
+  padding-bottom: 5px;
+}
+.flex-space-even {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+</style>

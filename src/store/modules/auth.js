@@ -1,6 +1,6 @@
 import API from "../../api/services";
 import router from "../../router";
-import { storeAuthData } from "../../services/Auther";
+import { storeAuthData, removeAuthData } from "../../services/Auther";
 
 const state = {
   profile: {},
@@ -35,18 +35,18 @@ const actions = {
     router.push("/");
   },
   async update(context, payload) {
+    console.log(`payload: ${payload}`);
     let { data } = await API.update("/users/updateMe", payload);
-    context.commit("updateProfileInfo", data.data.user);
+    context.commit("updateProfileInfo", data.data.data);
+  },
+  async user(context) {
+    let { data } = await API.get("/users/me");
+    await context.commit("updateProfileInfo", data.data.data);
   },
   async logout(context) {
     context.commit("removeProfileInfo", "{}");
+    removeAuthData();
     router.currentRoute.path !== "/" ? router.push("/") : "";
-  },
-
-  async user(context) {
-    let data = {};
-    // let { data } = await API.Authentication.user();
-    await context.commit("updateProfileInfo", data);
   },
 };
 

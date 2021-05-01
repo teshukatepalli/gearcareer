@@ -10,6 +10,7 @@ export class Authentication {
 
   //Login
   static login(data = {}) {
+    delete data._id;
     return axios({
       method: "post",
       url: `http://localhost:3000/user/login/`,

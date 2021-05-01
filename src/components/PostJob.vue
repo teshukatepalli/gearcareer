@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label"
-                    >Job Tags <span>(optional)</span></label
+                    >Skills <span>(optional)</span></label
                   >
                   <input
                     type="text"
@@ -82,20 +82,10 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label">Description</label>
+                  <textarea class="form-control p-3" rows="7"></textarea>
                 </div>
-                <section id="editor">
-                  <div id="summernote">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem quia aut modi fugit, ratione saepe perferendis odio
-                      optio repellat dolorum voluptas excepturi possimus
-                      similique veritatis nobis. Provident cupiditate delectus,
-                      optio?
-                    </p>
-                  </div>
-                </section>
                 <div class="form-group">
-                  <label class="control-label">Application email / URL</label>
+                  <label class="control-label">Salary Range(optional)</label>
                   <input
                     type="text"
                     class="form-control"
@@ -103,16 +93,37 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label class="control-label"
-                    >Closing Date <span>(optional)</span></label
-                  >
+                  <label class="control-label">Job Type</label>
+                  <div class="search-category-container">
+                    <label class="styled-select">
+                      <select class="dropdown-product selectpicker">
+                        <option value="full time">Full time</option>
+                        <option value="part time">Part time</option>
+                        <option value="contract">Contract</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Location Type</label>
+                  <div class="search-category-container">
+                    <label class="styled-select">
+                      <select class="dropdown-product selectpicker">
+                        <option value="in-person">In Person</option>
+                        <option value="remote">Remote</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Positions</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="yyyy-mm-dd"
+                    placeholder="Enter an email address or website URL"
                   />
                 </div>
-                <div class="divider">
+                <!-- <div class="divider">
                   <h3 class="job-title">Company Details</h3>
                 </div>
                 <div class="form-group">
@@ -168,7 +179,7 @@
                   <div class="invalid-feedback">
                     Example invalid custom file feedback
                   </div>
-                </div>
+                </div> -->
                 <a href="#" class="btn btn-common">Submit your job</a>
               </form>
             </div>
@@ -179,9 +190,13 @@
     <!-- Content section End -->
   </div>
 </template>
-
 <script>
-export default {};
+export default {
+  components: {},
+  data() {
+    return {};
+  },
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

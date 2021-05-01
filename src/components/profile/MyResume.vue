@@ -42,39 +42,61 @@
         ><i class="ti-plus"></i>edit
       </a>
       <h3>Work Experience</h3>
-      <h4>UI/UX Designer</h4>
-      <h5>Bannana INC.</h5>
-      <span class="date">Fab 2017-Present(5year)</span>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vero,
-        dolores, officia quibusdam architecto sapiente eos voluptas odit ab
-        veniam porro quae possimus itaque, quas! Tempora sequi nobis, atque
-        incidunt!
+      <div v-for="(experience, index) in Profile.experience" :key="index">
+        <h4>{{ experience.title }}</h4>
+        <h5>{{ experience.company_name }}</h5>
+        <span class="date"
+          >{{ experience.date_from }} - {{ experience.date_to }}</span
+        >
+        <p>
+          {{ experience.work_experience }}
+        </p>
+        <!-- <p><a href="#">4 Projects</a></p> -->
+        <br />
+      </div>
+      <p v-if="!Profile.experience.length" class="text-center">
+        Add work experience here....
       </p>
-      <p><a href="#">4 Projects</a></p>
-      <br />
-      <h4>UI Designer</h4>
-      <h5>Whale Creative</h5>
-      <span class="date">Fab 2017-Present(2year)</span>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vero,
-        dolores, officia quibusdam architecto sapiente eos voluptas odit ab
-        veniam porro quae possimus itaque, quas! Tempora sequi nobis, atque
-        incidunt!
-      </p>
-      <p><a href="#">4 Projects</a></p>
     </div>
     <WorkExperience :show="workExperience" @closeModel="editWorkExperience" />
     <div class="education item">
+      <a @click="editEdicationBlock" class="btn-added float-right"
+        ><i class="ti-plus"></i>edit
+      </a>
       <h3>Education</h3>
-      <h4>Massachusetts Institute Of Technology</h4>
-      <p>Bachelor of Computer Science</p>
-      <span class="date">2010-2014</span>
-      <br />
-      <h4>Massachusetts Institute Of Technology</h4>
-      <p>Bachelor of Computer Science</p>
-      <span class="date">2010-2014</span>
+      <div v-for="(edu, index) in Profile.education" :key="index">
+        <h4>{{ edu.degree }}</h4>
+        <p>{{ edu.field_of_study }}</p>
+        <span class="date">{{ edu.from }} - {{ edu.to }}</span>
+        <br />
+      </div>
     </div>
+    <EditEducation :show="editEducation" @closeModel="editEdicationBlock" />
+    <div class="education item">
+      <a @click="editSkillsBlock" class="btn-added float-right"
+        ><i class="ti-plus"></i>edit
+      </a>
+      <h3>Skills</h3>
+      <div v-for="(skill, index) in Profile.skills" :key="index">
+        <div class="row">
+          <div class="col-md-6">
+            <p>{{ skill.name }}</p>
+          </div>
+          <div class="col-md-6">
+            <div class="bar" :style="{ width: skill.percentage }">
+              {{ skill.percentage }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div v-for="(edu, index) in Profile.education" :key="index">
+        <h4>{{ edu.degree }}</h4>
+        <p>{{ edu.field_of_study }}</p>
+        <span class="date">{{ edu.from }} - {{ edu.to }}</span>
+        <br />
+      </div> -->
+    </div>
+    <editSkill :show="editSkills" @closeModel="editSkillsBlock" />
   </div>
 </template>
 
@@ -82,16 +104,22 @@
 import { mapState } from "vuex";
 import editprofile from "./editProfile.vue";
 import WorkExperience from "./WorkExperience.vue";
+import EditEducation from "./EditEducation.vue";
+import editSkill from "./editSkills.vue";
 export default {
   name: "profile",
   components: {
     editprofile,
     WorkExperience,
+    EditEducation,
+    editSkill,
   },
   data() {
     return {
       profileModel: false,
       workExperience: false,
+      editEducation: false,
+      editSkills: false,
     };
   },
   computed: {
@@ -112,12 +140,30 @@ export default {
       console.log("Work Experience called");
       this.workExperience = !this.workExperience;
     },
+    editEdicationBlock() {
+      console.log("Education callled");
+      this.editEducation = !this.editEducation;
+    },
+    editSkillsBlock() {
+      console.log("Skills called");
+      this.editSkills = !this.editSkills;
+    },
   },
 };
 </script>
 
 <style scoped>
 a {
-  color: #26ae61;
+  color: #27b062;
+  cursor: pointer;
+}
+.bar {
+  height: 18px;
+  width: 100%;
+  padding-left: 1em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #27b062;
+  border-radius: 1em;
 }
 </style>

@@ -38,6 +38,16 @@ export default new Router({
           component: () => import("./components/profile/MyResume.vue"),
         },
         {
+          path: "/my-company",
+          name: "my-company",
+          component: () => import("./components/profile/company.vue"),
+        },
+        {
+          path: "/manage-jobs",
+          name: "manage-jobs",
+          component: () => import("./components/profile/ManageJobs.vue"),
+        },
+        {
           path: "/bookmarked",
           name: "bookmarked",
           component: () => import("./components/profile/BookmarkedJobs.vue"),
@@ -79,6 +89,11 @@ export default new Router({
       path: "/postjob",
       name: "postjob",
       component: () => import("./components/PostJob.vue"),
+    },
+    {
+      path: "/browseresumes",
+      name: "browseresumes",
+      component: () => import("./components/profile/BrowseResumes.vue"),
     },
     {
       path: "/addresume",

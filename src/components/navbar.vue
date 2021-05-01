@@ -38,7 +38,7 @@
                   Home
                 </router-link>
               </li>
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -70,9 +70,6 @@
                     >
                   </li>
                   <li>
-                    <!-- <a class="dropdown-item" to="/privacy-policy"
-                      >Privacy Policy</a
-                    > -->
                     <router-link to="/privacy-policy" class="dropdown-item"
                       >Privacy Policy</router-link
                     >
@@ -93,7 +90,7 @@
                     >
                   </li>
                 </ul>
-              </li>
+              </li> -->
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
@@ -132,7 +129,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
+              <li v-if="Profile.role !== 'user'" class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -227,7 +224,7 @@
                   <span>Sign In</span>
                 </router-link>
               </li>
-              <li class="button-group">
+              <li v-if="Profile.role !== 'user'" class="button-group">
                 <router-link to="/postjob" class="button btn btn-common"
                   >Post a Job</router-link
                 >
@@ -244,7 +241,6 @@
 
 <script>
 import { mapState } from "vuex";
-
 export default {
   data() {
     return {};
@@ -252,7 +248,7 @@ export default {
   computed: {
     ...mapState({
       Profile: (state) => state.auth.profile,
-      Authenticate: (state) => state.auth.iSAuthenticated,
+      name: (state) => state.auth.profile.data.name,
     }),
   },
   created() {

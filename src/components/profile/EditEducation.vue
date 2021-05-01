@@ -1,67 +1,68 @@
 <template>
   <vueSlideoutPanel v-model="show" :widths="['50%']" @close="close()">
-    <h3 class="text-center pb-2 post-header">Work Experience</h3>
+    <h3>Education</h3>
     <div
-      v-for="(exp, index) in experience"
+      v-for="(edu, index) in education"
       :key="index"
       class="hidden-overflow p-2"
     >
       <div class="form-group">
-        <label class="control-label">Company Name</label>
+        <label class="control-label">Degree</label>
         <input
           type="text"
           class="form-control"
-          v-model="exp.company_name"
-          placeholder="Company name"
+          v-model="edu.degree"
+          placeholder="Degree, e.g. Bachelor"
         />
       </div>
       <div class="form-group">
-        <label class="control-label">Title</label>
+        <label class="control-label">Field of Study</label>
         <input
           type="text"
-          v-model="exp.title"
           class="form-control"
-          placeholder="e.g UI/UX Researcher"
+          v-model="edu.field_of_study"
+          placeholder="Major, e.g Computer Science"
+        />
+      </div>
+      <div class="form-group">
+        <label class="control-label">School</label>
+        <input
+          type="text"
+          class="form-control"
+          v-model="edu.school"
+          placeholder="School name, e.g. Massachusetts Institute of Technology"
         />
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col-md-6">
-            <label class="control-label">Date Form</label>
+            <label class="control-label">From</label>
             <input
               type="text"
-              v-model="exp.date_from"
               class="form-control"
+              v-model="edu.from"
               placeholder="e.g 2014"
             />
           </div>
           <div class="col-md-6">
-            <label class="control-label">Date To</label>
+            <label class="control-label">To</label>
             <input
               type="text"
-              v-model="exp.date_to"
               class="form-control"
+              v-model="edu.to"
               placeholder="e.g 2020"
             />
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <label class="control-label">Work Description</label>
-        <textarea
-          class="form-control p-3"
-          v-model="exp.work_experience"
-          rows="7"
-        ></textarea>
-      </div>
       <div class="add-post-btn">
         <div class="float-left">
-          <a @click="addNewExperience()" class="btn-added"
-            ><i class="ti-plus"></i> Add New Experience</a
+          <a href="#" class="btn-added" @click="addNewEducation()"
+            ><i class="ti-plus"></i> Add New Education</a
           >
         </div>
         <div class="float-right">
-          <a @click="removeExperience(index)" class="btn-delete"
+          <a href="#" class="btn-delete" @click="removeExperience(index)"
             ><i class="ti-trash"></i> Delete This</a
           >
         </div>
@@ -83,26 +84,26 @@ export default {
   props: ["show"],
   data() {
     return {
-      experience: [
+      education: [
         {
-          company_name: "",
-          title: "",
-          date_from: "",
-          date_to: "",
-          work_experience: "",
+          degree: "",
+          field_of_study: "",
+          school: "",
+          from: "",
+          to: "",
         },
       ],
-      experience_form: {
-        company_name: "",
-        title: "",
-        date_from: "",
-        date_to: "",
-        work_experience: "",
+      education_form: {
+        degree: "",
+        field_of_study: "",
+        school: "",
+        from: "",
+        to: "",
       },
     };
   },
   created() {
-    this.checkExperience();
+    this.checkEducation();
   },
   computed: {
     ...mapState({
@@ -110,17 +111,17 @@ export default {
     }),
   },
   methods: {
-    checkExperience() {
-      if (this.Profile.experience.length) {
-        this.experience = JSON.parse(JSON.stringify(this.Profile.experience));
+    checkEducation() {
+      if (this.Profile.education.length) {
+        this.education = JSON.parse(JSON.stringify(this.Profile.education));
       }
     },
-    addNewExperience() {
-      this.experience.push(this.experience_form);
+    addNewEducation() {
+      this.education.push(this.education_form);
     },
-    removeExperience(index) {
+    removeEducation(index) {
       console.log(index);
-      this.experience.splice(index, 1);
+      this.education.splice(index, 1);
     },
     close() {
       this.$emit("closeModel");
@@ -128,8 +129,8 @@ export default {
     updateUser() {
       //   this.Profile.address.address = this.Address;
       console.log(this.Profile);
-      console.log(this.experience);
-      this.Profile.experience = this.experience;
+      console.log(this.education);
+      this.Profile.education = this.education;
       this.$store.dispatch("auth/update", this.Profile);
       this.close();
     },

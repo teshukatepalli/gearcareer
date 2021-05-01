@@ -1,5 +1,6 @@
 import axios from "axios";
-import { authHeader } from "../services/Auther";
+import { authHeader, removeAuthData } from "../services/Auther";
+import router from "../router";
 
 const ApiEndpoint = "http://localhost:3000/api/v1";
 const headers = {
@@ -10,15 +11,23 @@ const headers = {
 if (authHeader()) {
   headers["Authorization"] = "Bearer " + authHeader();
 }
+console.log(headers);
 
 export default {
   get(url, id = "") {
     let urls;
-    id ? (urls = `${ApiEndpoint}${url}/${id}`) : `${ApiEndpoint}${url}`;
+    id
+      ? (urls = `${ApiEndpoint}${url}/${id}`)
+      : (urls = `${ApiEndpoint}${url}`);
     return axios({
       method: "get",
-      url: urls,
+      url: `${urls}`,
       headers: headers,
+    }).catch((err) => {
+      router.currentRoute.path !== "/" ? router.push("/") : "";
+      console.log(err);
+      removeAuthData();
+      return Promise.reject("Something went wrong");
     });
   },
   update(url, data, id = "") {
@@ -26,7 +35,6 @@ export default {
     id
       ? (urls = `${ApiEndpoint}${url}/${id}`)
       : (urls = `${ApiEndpoint}${url}`);
-    console.log(ApiEndpoint, urls, id, url);
     return axios({
       method: "patch",
       url: `${urls}`,

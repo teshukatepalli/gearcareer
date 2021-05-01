@@ -22,7 +22,13 @@ import LatestJobs from "../components/LatestJobs.vue";
 import Review from "../components/Testmonial.vue";
 import Pricing from "../components/Pricing.vue";
 import BlogPost from "../components/BlogSpot.vue";
+import Modal from "../components/modal.vue";
 export default {
+  data() {
+    return {
+      show: false,
+    };
+  },
   components: {
     Hero,
     Categories,
@@ -33,8 +39,9 @@ export default {
     Review,
     Pricing,
     BlogPost,
+    Modal,
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
