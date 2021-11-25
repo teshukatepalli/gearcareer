@@ -19,25 +19,22 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5 col-md-6 col-xs-12">
-            <ValidationProvider rules="required">
             <div class="page-login-form box">
               <h3>
                 Login
               </h3>
               <div class="login-form" >
                 <div class="form-group">
-                  <div class="input-icon" slot-scope="{ errors }">
+                  <div class="input-icon">
                     <i class="lni-user"></i>
                     <input
-                      v-validate="'required|email'"
                       type="text"
                       id="sender-email"
                       class="form-control"
                       name="email"
                       v-model="payload.email"
-                      placeholder="name"
+                      placeholder="email"
                     />
-                  <span>{{ errors.first('email') }}</span>
                   </div>
                 </div>
                 
@@ -72,7 +69,6 @@
                 </li>
               </ul>
             </div>
-            </ValidationProvider>
           </div>
         </div>
       </div>
@@ -98,7 +94,7 @@ export default {
       //   email: '',
       //   password: ''
       // },
-      // errors: []
+      errors: []
     };
   },
   computed: {
