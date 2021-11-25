@@ -37,7 +37,7 @@ const actions = {
   async update(context, payload) {
     console.log(`payload: ${payload}`);
     let { data } = await API.update("/users/updateMe", payload);
-    context.commit("updateProfileInfo", data.data.data);
+    context.commit("updateProfileInfo", data.data.user);
   },
   async user(context) {
     let { data } = await API.get("/users/me");

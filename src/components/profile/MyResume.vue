@@ -9,16 +9,12 @@
         <a @click="editProfile" class="btn-added float-right"
           ><i class="ti-plus"></i>edit
         </a>
-        <!-- <h3>{{ Profile }}</h3> -->
         <h3>{{ Profile.name }}</h3>
         <p class="sub-title">{{ Profile.profession }}</p>
         <p>
-          <span class="address" v-if="checkAddress(Profile.address)"
-            ><i class="lni-map-marker"></i
-            >{{ checkAddress(Profile.address) }}</span
-          >
           <span><i class="ti-phone"></i>{{ Profile.mobile }}</span>
         </p>
+        <p>{{Profile.email}}</p>
         <div class="social-link">
           <a href="#" class="Twitter"><i class="lni-twitter-filled"></i></a>
           <a href="#" class="facebook"><i class="lni-facebook-filled"></i></a>
@@ -42,19 +38,21 @@
         ><i class="ti-plus"></i>edit
       </a>
       <h3>Work Experience</h3>
-      <div v-for="(experience, index) in Profile.experience" :key="index">
-        <h4>{{ experience.title }}</h4>
-        <h5>{{ experience.company_name }}</h5>
-        <span class="date"
-          >{{ experience.date_from }} - {{ experience.date_to }}</span
-        >
-        <p>
-          {{ experience.work_experience }}
-        </p>
-        <!-- <p><a href="#">4 Projects</a></p> -->
-        <br />
+      <div v-if="Profile.experience">
+        <div v-for="(experience, index) in Profile.experience" :key="index">
+          <h4>{{ experience.title }}</h4>
+          <h5>{{ experience.company_name }}</h5>
+          <span class="date"
+            >{{ experience.date_from }} - {{ experience.date_to }}</span
+          >
+          <p>
+            {{ experience.work_experience }}
+          </p>
+          <p><a href="#">4 Projects</a></p>
+          <br />
+        </div>
       </div>
-      <p v-if="!Profile.experience.length" class="text-center">
+      <p v-else class="text-center">
         Add work experience here....
       </p>
     </div>
@@ -64,12 +62,17 @@
         ><i class="ti-plus"></i>edit
       </a>
       <h3>Education</h3>
-      <div v-for="(edu, index) in Profile.education" :key="index">
-        <h4>{{ edu.degree }}</h4>
-        <p>{{ edu.field_of_study }}</p>
-        <span class="date">{{ edu.from }} - {{ edu.to }}</span>
-        <br />
+      <div v-if="Profile.education">
+        <div v-for="(edu, index) in Profile.education" :key="index">
+          <h4>{{ edu.degree }}</h4>
+          <p>{{ edu.field_of_study }}</p>
+          <span class="date">{{ edu.from }} - {{ edu.to }}</span>
+          <br />
+        </div>
       </div>
+      <p v-else class="text-center">
+        Add education here....
+      </p>
     </div>
     <EditEducation :show="editEducation" @closeModel="editEdicationBlock" />
     <div class="education item">
@@ -83,18 +86,12 @@
             <p>{{ skill.name }}</p>
           </div>
           <div class="col-md-6">
-            <div class="bar" :style="{ width: skill.percentage }">
-              {{ skill.percentage }}
+            <div class="bar" :class="getwidthClass(skill.percentage)">
+              {{ skill.percentage }} %
             </div>
           </div>
         </div>
       </div>
-      <!-- <div v-for="(edu, index) in Profile.education" :key="index">
-        <h4>{{ edu.degree }}</h4>
-        <p>{{ edu.field_of_study }}</p>
-        <span class="date">{{ edu.from }} - {{ edu.to }}</span>
-        <br />
-      </div> -->
     </div>
     <editSkill :show="editSkills" @closeModel="editSkillsBlock" />
   </div>
@@ -129,12 +126,12 @@ export default {
     }),
   },
   methods: {
+    getwidthClass(width) {
+      return `width-${width}`
+    },
     editProfile() {
       console.log("Edit called");
       this.profileModel = !this.profileModel;
-    },
-    checkAddress(address) {
-      return address.address ? address.address : null;
     },
     editWorkExperience() {
       console.log("Work Experience called");
@@ -165,5 +162,35 @@ a {
   margin-bottom: 5px;
   background-color: #27b062;
   border-radius: 1em;
+}
+.width-10 {
+  width: 10%
+}
+.width-20 {
+  width: 20%
+}
+.width-30 {
+  width: 30%
+}
+.width-40 {
+  width: 40%
+}
+.width-50 {
+  width: 50%
+}
+.width-60 {
+  width: 60%
+}
+.width-70 {
+  width: 70%
+}
+.width-80 {
+  width: 80%;
+}
+.width-90 {
+  width: 90%;
+}
+.width-100 {
+  width: 100%
 }
 </style>

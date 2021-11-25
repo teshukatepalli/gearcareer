@@ -153,14 +153,20 @@ export default {
       Profile: (state) => state.auth.profile,
     }),
   },
+  created() {
+    if(this.Profile.address[0]) {
+      this.address = this.Profile.address[0]
+    }
+  },
   methods: {
     close() {
       console.log("close called");
       this.$emit("closeModel");
     },
     updateUser() {
+      this.Profile.address = [];
+      this.Profile.address = this.address;
       console.log(this.Profile);
-      this.Profile.address.address = this.Address;
       this.$store.dispatch("auth/update", this.Profile);
       this.close();
     },

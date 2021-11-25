@@ -92,7 +92,7 @@ export default {
       }
     },
     addNewSkill() {
-      this.skills.push(this.skill_form);
+      this.skills.push(JSON.parse(JSON.stringify(this.skill_form)));
     },
     removeSkill(index) {
       console.log(index);

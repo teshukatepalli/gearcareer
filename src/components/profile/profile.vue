@@ -24,6 +24,7 @@
           <div class="col-lg-4 col-md-4 col-xs-12">
             <div class="right-sideabr">
               <h4>Manage Account</h4>
+              {{Profile}}
               <ul v-if="Profile.role === 'user'" class="list-item">
                 <li>
                   <router-link
@@ -130,11 +131,11 @@
 import { mapState } from "vuex";
 export default {
   created() {
-    if (this.Profile.user !== "user") {
-      this.$router.currentRoute.path !== "/my-company"
-        ? this.$router.push("/my-company")
-        : "";
-    }
+    // if (this.Profile.user !== "user") {
+    //   this.$router.currentRoute.path !== "/my-company"
+    //     ? this.$router.push("/my-company")
+    //     : "";
+    // }
   },
   computed: {
     ...mapState({

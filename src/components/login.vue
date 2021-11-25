@@ -19,15 +19,17 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5 col-md-6 col-xs-12">
+            <ValidationProvider rules="required">
             <div class="page-login-form box">
               <h3>
                 Login
               </h3>
-              <div class="login-form">
+              <div class="login-form" >
                 <div class="form-group">
-                  <div class="input-icon">
+                  <div class="input-icon" slot-scope="{ errors }">
                     <i class="lni-user"></i>
                     <input
+                      v-validate="'required|email'"
                       type="text"
                       id="sender-email"
                       class="form-control"
@@ -35,8 +37,10 @@
                       v-model="payload.email"
                       placeholder="name"
                     />
+                  <span>{{ errors.first('email') }}</span>
                   </div>
                 </div>
+                
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-lock"></i>
@@ -68,6 +72,7 @@
                 </li>
               </ul>
             </div>
+            </ValidationProvider>
           </div>
         </div>
       </div>
@@ -77,6 +82,11 @@
 
 <script>
 import { mapState } from "vuex";
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
+import { ValidationProvider } from 'vee-validate';
+
+Vue.use(VeeValidate);
 export default {
   data() {
     return {
@@ -84,6 +94,11 @@ export default {
         email: "siva@gmail.com",
         password: "teshu143cherry",
       },
+      // payload: {
+      //   email: '',
+      //   password: ''
+      // },
+      // errors: []
     };
   },
   computed: {
